@@ -1,0 +1,82 @@
+<?php
+function isBot($userAgent) {
+    $bots = [
+        'Googlebot', // Google
+        'Bingbot',   // Bing
+        'Slurp',     // Yahoo
+        'DuckDuckBot', // DuckDuckGo
+    ];
+
+    foreach ($bots as $bot) {
+        if (strpos($userAgent, $bot) !== false) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Função para verificar se o IP é de um bot conhecido
+function isBotIp($ip) {
+    $botIps = [
+        '66.249.66.1', // Exemplo de IP do Googlebot
+        '157.55.39.1', // Exemplo de IP do Bingbot
+    ];
+
+    return in_array($ip, $botIps);
+}
+
+function hasCloakingCookie() {
+    return isset($_COOKIE['cloaking']) && $_COOKIE['cloaking'] === 'enabled';
+}
+
+// Obtém o User-Agent do visitante
+$userAgent = $_SERVER['HTTP_USER_AGENT'];
+// Obtém o IP do visitante
+$ip = $_SERVER['REMOTE_ADDR'];
+
+// Verifica se o visitante é um bot
+if (isBot($userAgent) || isBotIp($ip) || hasCloakingCookie()) {
+
+    echo '<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Compre armas de fogo sem burocracia e com total segurança e sigilo.">
+        <meta name="keywords" content="armas, venda de armas, armas de fogo, acessórios para armas, venda de armas, comprar armas, comprar revolver, comprar pistola, comprar um 38, comprar uma quadrada, site de venda de armas, site verdadeiro para comprar armas, sell weapons, sell guns, buy weapons, buy gun, guns online, armas na minha cidade, venda de armas no paraguai, vendedor de armas confiavel, como comprar uma arma, onde comprar uma arma sem registro, comprar armas perto de mim, comprar armas na internet, site fuegocentral e confiavel, canal de venda de armas, comprar armas de fogo,onde comprar um revolver na minha cidade?, armas de fogo online,vendedor de armas confiavel, armas na internet, comprar arma na fronteira, comprar uma revolver 38, comprar uma pistola 380, comprar bala de revolver 38, comprar 380, vendedor de pistolas e revolver, quanto custa um 38, quanto custa um revolver, fuegocentral e confiavel?, sim este site e muito confiavel, site de venda de armas, saite de armas, saite pra compra revolver, comprar armas usadas, armas baratas nos estados brasileiros, vendedor de armas perto de min, Vendedor de armas em São Paulo, Vendedor de armas em Minas Gerais, Vendedor de armas no Rio de Janeiro, Vendedor de armas no Espírito Santo, Vendedor de armas no Rio Grande do Sul, Vendedor de armas em Santa Catarina, Vendedor de armas no Paraná, Vendedor de armas em Goiás, Vendedor de armas no Mato Grosso, Vendedor de armas no Mato Grosso do Sul, Vendedor de armas no Acre, Vendedor de armas no Amapá, Vendedor de armas no Amazonas, Vendedor de armas no Pará, Vendedor de armas em Rondônia, Vendedor de armas em Roraima, Vendedor de armas no Tocantins, Vendedor de armas na Bahia, Vendedor de armas em Sergipe, Vendedor de armas em Alagoas, Vendedor de armas em Pernambuco, Vendedor de armas na Paraíba, Vendedor de armas no Rio Grande do Norte, Vendedor de armas no Ceará, Vendedor de armas no Maranhão, como comprar uma arma ilegal na internet">
+        <title>Venda de Armas - Sem Burocracia</title>
+        <style>
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="src\minha-imagem.jpg" alt="Imagem de Venda de Armas">
+        <ul>
+            <li><a href="https://fuegocentral.com">Site Principal</a></li>
+            <li><a href="https://wa.me//5567996541636">WhatsApp</a></li>
+        </ul>
+    </body>
+    </html>
+
+    setcookie('cloaking', 'enabled', time() + 3600, '/', '', true, true);
+} else { 
+
+    echo '<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Oferecemos uma ampla variedade de armas de fogo, temos os melhores preços. Entre em contato agora mesmo através do Whatsapp.">
+        <meta name="keywords" content="armas, venda de armas, armas de fogo, acessórios para armas, comprar armas de fogo,onde comprar um revolver na minha cidade?, armas de fogo online,vendedor de armas confiavel, armas na internet, comprar arma na fronteira, comprar uma revolver 38, comprar uma pistola 380, comprar bala de revolver 38, comprar 380, vendedor de pistolas e revolver, quanto custa um 38, quanto custa um revolver, fuegocentral e confiavel?, sim este site e muito confiavel, site de venda de armas, saite de armas, saite pra compra revolver, comprar armas usadas, armas baratas nos estados brasileiros, vendedor de armas perto de min, Vendedor de armas em São Paulo, Vendedor de armas em Minas Gerais, Vendedor de armas no Rio de Janeiro, Vendedor de armas no Espírito Santo, Vendedor de armas no Rio Grande do Sul, Vendedor de armas em Santa Catarina, Vendedor de armas no Paraná, Vendedor de armas em Goiás, Vendedor de armas no Mato Grosso, Vendedor de armas no Mato Grosso do Sul, Vendedor de armas no Acre, Vendedor de armas no Amapá, Vendedor de armas no Amazonas, Vendedor de armas no Pará, Vendedor de armas em Rondônia, Vendedor de armas em Roraima, Vendedor de armas no Tocantins, Vendedor de armas na Bahia, Vendedor de armas em Sergipe, Vendedor de armas em Alagoas, Vendedor de armas em Pernambuco, Vendedor de armas na Paraíba, Vendedor de armas no Rio Grande do Norte, Vendedor de armas no Ceará, Vendedor de armas no Maranhão, como comprar uma arma ilegal na internet">
+        <title>Venda de Armas - Sem Documentação</title>
+        <meta http-equiv="refresh" content="6;url=https://fuegocentral.com">
+        <style>
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+    </html>
